@@ -1,5 +1,5 @@
 class Api::V1::StoriesController < ApplicationController
-    
+    before_action :find_story, only: [:show, :edit, :update, :destroy]
     def index
         @stories = Story.all
         render json: @stories
@@ -33,7 +33,7 @@ class Api::V1::StoriesController < ApplicationController
         params.permit(:title, :subtext, :image, :link, user_id, category_id)
       end
     
-      def find_act
+      def find_story
         @story = Story.find(params[:id])
       end
     
