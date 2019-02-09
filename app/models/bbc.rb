@@ -1,6 +1,8 @@
+require 'nokogiri'
+require 'open-uri'
 class Bbc < ApplicationRecord
 
-     def self.get_page
+  def self.get_page
    Nokogiri::HTML(open("https://www.bbc.co.uk/news/technology"))
   end
 
@@ -19,10 +21,9 @@ class Bbc < ApplicationRecord
             title: post.at_css(".title-link__title-text").text,
             subtext: post.at_css(".pigeon-item__summary").children.text,
             image: post.at_css(".js-delayed-image-load")["data-src"],
-            link: "https://www.bbc.co.uk#{post.at_css(".pigeon-item__body").children[1].attributes['href'].value}"
-            category_id: 1
-            website_id: 1
-    
+            link: "https://www.bbc.co.uk#{post.at_css(".pigeon-item__body").children[1].attributes['href'].value}",
+            category_id: Category.all.find{|category| category.name == "Tech"}.id,
+            website_id: Website.all.find{|website| website.name == "BBC"}.id
         }
     end
   end
@@ -33,5 +34,5 @@ class Bbc < ApplicationRecord
     end
   end
 
-
 end
+

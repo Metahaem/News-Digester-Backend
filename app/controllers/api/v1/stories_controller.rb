@@ -19,6 +19,7 @@ class Api::V1::StoriesController < ApplicationController
       end
 
       def scrape_all
+        Story.destroy_all
         Bbc.scrape_all_categories
         Independent.scrape_all_categories
         # Sky.scrape_all_categories

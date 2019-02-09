@@ -7,7 +7,7 @@ Rails.application.routes.draw do
       resources :categories
       resources :stories
       resources :user_stories
-      post 'scrape', to: 'stories#scrape_all'
+      get 'scrape', to: 'stories#scrape_all'
     end
   end
 

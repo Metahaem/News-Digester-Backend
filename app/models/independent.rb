@@ -1,3 +1,5 @@
+require 'nokogiri'
+require 'open-uri'
 class Independent < ApplicationRecord
 
     def self.get_page
@@ -18,15 +20,12 @@ class Independent < ApplicationRecord
                  title: post.at_css(".headline").text.gsub(/\n/, "").strip,
                  subtext: ``,
                  image: post.at_css(".amp-img")["src"],
-                 link: "https://www.independent.co.uk#{post.at_css(".content").children[3]["href"]}"
-                 category_id: 1
-                 website_id: 2
+                 link: "https://www.independent.co.uk#{post.at_css(".content").children[3]["href"]}",
+                 category_id: Category.all.find{|category| category.name == "Tech"}.id,
+                 website_id: Website.all.find{|website| website.name == "Independent"}.id
          }
          end
        end
-     
-       refined_stories = self.get_array_of_stories
-       debugger
      
        def self.scrape_all_categories
          self.get_array_of_stories.each do |story|
@@ -35,6 +34,6 @@ class Independent < ApplicationRecord
        end
      
      
-     end
-
 end
+
+
