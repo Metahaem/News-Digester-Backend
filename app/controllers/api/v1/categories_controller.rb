@@ -21,7 +21,7 @@ class Api::V1::CategoriesController < ApplicationController
     
       private
     
-        def user_params
+        def category_params
           params.permit(:name)
         end
     

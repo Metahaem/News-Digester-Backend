@@ -10,7 +10,7 @@ class Api::V1::StoriesController < ApplicationController
       end
     
       def create
-        @story = Story.new(act_params)
+        @story = Story.new(story_params)
         if @story.valid? && @story.save
           render json: @story
         else
@@ -21,16 +21,16 @@ class Api::V1::StoriesController < ApplicationController
       def scrape_all
         Bbc.scrape_all_categories
         Independent.scrape_all_categories
-        Sky.scrape_all_categories
-        Huff_post.scrape_all_categories
-        Guardian.scrape_all_categories
+        # Sky.scrape_all_categories
+        # Huff_post.scrape_all_categories
+        # Guardian.scrape_all_categories
         render json: @stories
     end
     
     private
     
       def story_params
-        params.permit(:title, :subtext, :image, :link, user_id, category_id)
+        params.permit(:title, :subtext, :image, :link, website_id, category_id)
       end
     
       def find_story
