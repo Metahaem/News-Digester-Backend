@@ -10,6 +10,3 @@ class StorySerializer < ActiveModel::Serializer
   belongs_to :category
   belongs_to :website
 end
-
-20-47-34
-93197573

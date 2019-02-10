@@ -13,11 +13,14 @@ class Api::V1::UsersController < ApplicationController
       def create
         @user = User.new(name: params[:name])
         if @user.valid? && @user.save
-          render json: @user
+            render json: { user: UserSerializer.new(@user) }, status: :created        
         else
-          render json: {error: "Unable to create user."}, status: 400
+          render json: {error: "Unable to create user."}, status: :not_acceptable
         end
       end
+
+
+    
     
       private
     
