@@ -87,47 +87,15 @@ class Bbc < ApplicationRecord
     @stories << self.refine_pigeon_data(category)
     
     #create stories in database
-    # debugger
     @stories.compact.each do |story|
       Story.create!(story)
       end
   end
 
   def self.scrape_all_categories
-    
     category_names = @categories.map {|k, v| k}
-    # debugger
     category_names.each {|cat| self.scrape_one_category(cat)}
   end
-
-    
-    
-
-
-  
-
-  # end
-
-  # def self.get_buzzard_story(category)
-  #   self.get
-  # end
-
-
-  # def self.get_buzzard_story(category)
-
-  # end
-
-  # def self.scrape_all_categories(category)
-  #   self.get_array_of_pigeon_stories(category).each do |story|
-  #     Story.create!(story)
-  #   end
-  # end
-
-  # def get_bbc_stories
-  #   @response_string = RestClient.get("https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=#{@news_api_key}")
-  #   @response_hash = JSON.parse(@response_string)["articles"]
-    
-  # end
 
 end
 
