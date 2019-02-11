@@ -24,7 +24,7 @@ class Api::V1::StoriesController < ApplicationController
         Independent.scrape_all_categories
         # Sky.scrape_all_categories
         # Huff_post.scrape_all_categories
-        # Guardian.scrape_all_categories
+        Guardian.scrape_all_categories
         render json: @stories
     end
     
