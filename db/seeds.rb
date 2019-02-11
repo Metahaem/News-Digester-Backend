@@ -8,6 +8,9 @@
 
 Website.destroy_all
 Category.destroy_all
-websites = [{name: "BBC"}, {name: "Independent"}]
+
+websites = [{name: "BBC"}, {name: "Independent"}, {name: "Guardian"}, {name: "Al Jazeera"}, {name: "Reuters"}]
 websites.each {|website| Website.create(website)}
-Category.create(name: 'Tech')
+
+categories = [{name: "UK"}, {name: "World"}, {name: "Art"}, {name: "Politics"}, {name: "Business"}, {name: "Technology"}, {name: "Environment"}]
+categories.each {|category| Category.create(category)}
