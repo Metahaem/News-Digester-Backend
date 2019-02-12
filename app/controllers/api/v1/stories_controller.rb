@@ -22,8 +22,8 @@ class Api::V1::StoriesController < ApplicationController
         Story.destroy_all
         Bbc.scrape_all_categories
         Independent.scrape_all_categories
-        # Sky.scrape_all_categories
-        # Huff_post.scrape_all_categories
+        Reuters.scrape_all_categories
+        Al_jazeera.scrape_all_categories
         Guardian.scrape_all_categories
         render json: @stories
     end
