@@ -12,7 +12,7 @@ class Independent < ApplicationRecord
   
 
     def self.get_page(category)
-        Nokogiri::HTML(open("https://www.independent.co.uk/#{@categories[category].downcase}"))
+        Nokogiri::HTML(open("https://www.independent.co.uk/#{@categories[category]}"))
        end
      
      

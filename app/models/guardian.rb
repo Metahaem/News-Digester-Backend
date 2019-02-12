@@ -3,17 +3,17 @@ require 'open-uri'
 
 class Guardian < ApplicationRecord
         @categories = {
-          'UK': "UK", 
-          "World": "World", 
+          'UK': "uk", 
+          "World": "world", 
           "Art": "artanddesign", 
-          "Politics": "Politics", 
-          "Business": "Business", 
-          "Technology": "Technology",  
-          "Environment": "Environment"}
+          "Politics": "politics", 
+          "Business": "business", 
+          "Technology": "technology",  
+          "Environment": "environment"}
       
       
         def self.get_page(category)
-          Nokogiri::HTML(open("https://www.theguardian.com/#{@categories[category].downcase}"))
+          Nokogiri::HTML(open("https://www.theguardian.com/#{@categories[category]}"))
         end
 
         def self.has_kicker(story)
@@ -24,16 +24,7 @@ class Guardian < ApplicationRecord
             end
         end
       
-        def self.has_img(story)
-            if story.at_css(".responsive-img") == nil
-                return false
-            else
-                return true
-            end
-        end
-
-
-
+ 
         def self.refine_story_data(category)
             refined_stories = []
             stories = self.get_page(category).css(".fc-item__container")

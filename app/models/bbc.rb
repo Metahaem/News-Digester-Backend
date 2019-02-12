@@ -7,18 +7,18 @@ require 'open-uri'
 
 class Bbc < ApplicationRecord
   @categories = {
-    'UK': "UK", 
-    "World": "World", 
+    'UK': "uk", 
+    "World": "world", 
     "Art": "entertainment_and_arts", 
-    "Politics": "Politics", 
-    "Business": "Business", 
-    "Technology": "Technology",  
-    "Environment": "Science_and_environment"}
+    "Politics": "politics", 
+    "Business": "business", 
+    "Technology": "technology",  
+    "Environment": "science_and_environment"}
 
 
   def self.get_page(category)
     
-    Nokogiri::HTML(open("https://www.bbc.co.uk/news/#{@categories[category].downcase}"))
+    Nokogiri::HTML(open("https://www.bbc.co.uk/news/#{@categories[category]}"))
   end
 
   def self.refine_pigeon_data(category)
