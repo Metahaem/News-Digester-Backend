@@ -6,8 +6,8 @@ class Al_jazeera < ApplicationRecord
     @categories = {
       'UK': "topics/country/united-kingdom.html", 
       "World": "news/", 
-    #   "Art": "topics/subjects/art.html", 
-    #   "Business": "topics/categories/business.html", 
+      "Art": "topics/subjects/art.html", 
+      "Business": "topics/categories/business.html", 
       "Technology": "topics/categories/science-and-technology.html",  
       "Environment": "topics/categories/environment.html"}
     
@@ -46,24 +46,12 @@ class Al_jazeera < ApplicationRecord
             }
     end
 
+
+    
     def self.refine_middle_story_data(category)
-        stories = self.get_page(category).css(".topics-sec-item")
-        if stories.length != 0
-            stories.map do |story| {
-                title: story.at_css(".topics-sec-item-head").text,
-                subtext: self.get_subtext(story),
-                image: "https://www.aljazeera.com#{story.at_css(".img-responsive")["src"]}",
-                link: "https://www.aljazeera.com#{story.at_css(".topics-sec-item-label").children.first["href"]}",
-                category_id: self.get_category_id(category),
-                website_id: self.get_website_id
-                } 
-            end  
-        end
-    end
-    
-    
-    def self.refine_lower_story_data(category)
         stories = self.get_page(category).css(".top-section-rt-s1")
+        #filter out stories with no image
+        stories = stories.reject {|story| story.at_css(".img-responsive") == nil}
         
         stories.map do |story| {
             title: story.at_css(".top-sec-smalltitle").text,
@@ -73,6 +61,24 @@ class Al_jazeera < ApplicationRecord
             category_id: self.get_category_id(category),
             website_id: self.get_website_id
             }   
+        end
+    end
+
+    def self.refine_lower_story_data(category)
+
+        stories = self.get_page(category).css(".topics-sec-item")
+        #filter out stories with no image
+        stories = stories.reject {|story| story.at_css(".img-responsive") == nil}
+
+        stories.map do |story| {
+            title: story.at_css(".topics-sec-item-head").text,
+            subtext: self.get_subtext(story),
+            image: "https://www.aljazeera.com#{story.at_css(".img-responsive")["src"]}",
+            link: "https://www.aljazeera.com#{story.at_css(".topics-sec-item-label").children.first["href"]}",
+            category_id: self.get_category_id(category),
+            website_id: self.get_website_id
+            } 
+             
         end
     end
 
