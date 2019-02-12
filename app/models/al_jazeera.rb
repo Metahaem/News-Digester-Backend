@@ -94,7 +94,6 @@ class Al_jazeera < ApplicationRecord
         stories = self.combine_stories_from_single_category(category)
         stories.compact.each do |story|
             Story.create!(story)
-            puts story
         end
     end
         

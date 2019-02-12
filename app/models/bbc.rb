@@ -17,15 +17,12 @@ class Bbc < ApplicationRecord
 
 
   def self.get_page(category)
-    
     Nokogiri::HTML(open("https://www.bbc.co.uk/news/#{@categories[category]}"))
   end
 
   def self.refine_pigeon_data(category)
-    # Only the first 2 pigeon items follow the desired data format e.g. with an image and usually a subtext.
-    # This method only selects the first 2
-
-    pigeons = self.get_page(category).css(".pigeon-item")[0..1]
+    pigeons = self.get_page(category).css(".pigeon-item")
+    pigeons = pigeons.reject{|story| story.at_css(".js-delayed-image-load") == nil}
     
     refined_pigeons = []
     pigeons.each do |story| 
