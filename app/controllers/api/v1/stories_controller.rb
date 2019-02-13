@@ -25,7 +25,7 @@ class Api::V1::StoriesController < ApplicationController
         Reuters.scrape_all_categories
         Al_jazeera.scrape_all_categories
         Guardian.scrape_all_categories
-        render json: @stories
+        render json: Story.all
     end
     
     private
