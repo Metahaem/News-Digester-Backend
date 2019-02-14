@@ -56,7 +56,7 @@ class Al_jazeera < ApplicationRecord
         stories.map do |story| {
             title: story.at_css(".top-sec-smalltitle").text,
             subtext: self.get_subtext(story),
-            image: "https://www.aljazeera.com#{story.at_css(".img-responsive")["src"]}",
+            image: story.at_css(".img-responsive")["src"],
             link: "https://www.aljazeera.com#{story.at_css(".frame-container").children.first["href"]}",
             category_id: self.get_category_id(category),
             website_id: self.get_website_id
