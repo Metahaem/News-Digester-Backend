@@ -19,6 +19,10 @@ class Api::V1::UsersController < ApplicationController
         end
       end
 
+      def destroy
+        @user.destroy
+        redirect_to users_path
+      end
 
     
     

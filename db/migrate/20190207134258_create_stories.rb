@@ -5,6 +5,7 @@ class CreateStories < ActiveRecord::Migration[5.2]
       t.string :subtext
       t.string :image
       t.string :link
+      t.text :text, default: ""
       t.integer :category_id
       t.integer :website_id
 

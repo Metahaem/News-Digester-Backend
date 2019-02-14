@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 2019_02_07_134350) do
     t.string "subtext"
     t.string "image"
     t.string "link"
+    t.text "text", default: ""
     t.integer "category_id"
     t.integer "website_id"
     t.datetime "created_at", null: false
@@ -35,6 +36,7 @@ ActiveRecord::Schema.define(version: 2019_02_07_134350) do
   create_table "user_stories", force: :cascade do |t|
     t.integer "user_id"
     t.integer "story_id"
+    t.boolean "admin", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
