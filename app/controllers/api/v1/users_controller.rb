@@ -26,6 +26,15 @@ class Api::V1::UsersController < ApplicationController
       def stories
         render json: @user.stories
       end
+
+      def signin
+        @user = User.find_by(name: params[:name])
+        if @user && @user.authenticate(params[:password])
+          render json: {user: @user.name, id: @user.id}
+        else
+          render json: {error: ‘Username/password invalid.’}, status: 400
+        end
+      end
     
     
       private
