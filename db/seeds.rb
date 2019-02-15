@@ -16,4 +16,4 @@ websites.each {|website| Website.create(website)}
 categories = [{name: "UK"}, {name: "World"}, {name: "Art"}, {name: "Politics"}, {name: "Business"}, {name: "Technology"}, {name: "Environment"}]
 categories.each {|category| Category.create(category)}
 
-User.create(name: "Tom", password_digest: "foo")
+User.create(name: "Tom", password: "tom")
