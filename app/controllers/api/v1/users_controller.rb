@@ -32,10 +32,9 @@ class Api::V1::UsersController < ApplicationController
         if @user && @user.authenticate(params[:password])
           render json: {user: @user.name, id: @user.id}
         else
-          render json: {error: ‘Username/password invalid.’}, status: 400
+          render json: {error: 'Username/password invalid.'}, status: 400
         end
       end
-    
     
       private
     
