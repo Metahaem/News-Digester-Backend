@@ -26,7 +26,7 @@ class Api::V1::UserStoriesController < ApplicationController
       private
     
         def user_story_params
-          params.permit(:user_id, :story_id)
+          params.permit(:user_id, :story_id, :user_story)
         end
     
         def find_user_story

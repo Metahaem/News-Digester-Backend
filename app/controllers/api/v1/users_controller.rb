@@ -1,12 +1,11 @@
 class Api::V1::UsersController < ApplicationController
-    before_action :find_user, only: [:show, :edit, :update, :destroy]
+    before_action :find_user, only: [:show, :edit, :update, :destroy, :stories]
     def index
         @users = User.all
         render json: @users
       end
     
       def show
-        @user = User.find(params[:id])
         render json: @user
       end
     
@@ -24,12 +23,15 @@ class Api::V1::UsersController < ApplicationController
         redirect_to users_path
       end
 
+      def stories
+        render json: @user.stories
+      end
     
     
       private
     
         def user_params
-          params.permit(:name)
+          params.permit(:name, :id)
         end
     
         def find_user

@@ -36,7 +36,6 @@ ActiveRecord::Schema.define(version: 2019_02_07_134350) do
   create_table "user_stories", force: :cascade do |t|
     t.integer "user_id"
     t.integer "story_id"
-    t.boolean "admin", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -44,6 +43,7 @@ ActiveRecord::Schema.define(version: 2019_02_07_134350) do
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "password_digest"
+    t.boolean "admin", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

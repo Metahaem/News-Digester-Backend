@@ -3,7 +3,6 @@ class CreateUserStories < ActiveRecord::Migration[5.2]
     create_table :user_stories do |t|
       t.integer :user_id
       t.integer :story_id
-      t.boolean :admin, default: false
       t.timestamps
     end
   end
