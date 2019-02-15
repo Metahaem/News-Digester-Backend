@@ -4,21 +4,23 @@ class Api::V1::UserStoriesController < ApplicationController
     def index
         @user_stories = UserStory.all
         render json: @users_stories
-      end
+    end
     
     
-      def create
+    def create
         @user_story = UserStory.new(user_story_params)
         if @user_story.valid? && @user_story.save
             render json: { user_story: UserStorySerializer.new(@user_story) }, status: :created        
         else
           render json: {error: "Unable to create user_story."}, status: :not_acceptable
         end
-      end
+    end
 
-      def destroy
+
+      def delete
+        @user_story = UserStory.find{|user_story| (user_story.user_id == params[:user_id]) && (user_story.story_id == params[:story_id])}
         @user_story.destroy
-      end
+    end
 
     
       private

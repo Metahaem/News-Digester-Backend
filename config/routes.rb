@@ -8,7 +8,7 @@ Rails.application.routes.draw do
       resources :stories
       resources :user_stories
       get 'scrape', to: 'stories#scrape_all'
-      post 'update_text', to: 'stories#update_text'
+      post 'delete', to: 'user_stories#update_text'
     end
   end
 
