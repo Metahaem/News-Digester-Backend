@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       resources :stories
       resources :user_stories
       get 'scrape', to: 'stories#scrape_all'
+      post 'signin', to: 'users#signin'
     end
   end
 
